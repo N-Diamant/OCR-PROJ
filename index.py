@@ -11,13 +11,14 @@ sharpen_kernel = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]])
 sharpen = cv2.filter2D(gray, -1, sharpen_kernel)
 thresh = cv2.threshold(sharpen, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
 
-# ocr
+# Perform OCR on the preprocessed image
 data = pytesseract.image_to_string(thresh, lang='eng', config='--psm 6')
 
 # cv2.imshow('sharpen', sharpen)
 # cv2.imshow('thresh', thresh)
 # cv2.waitKey()
+# Extract numeric characters from the OCR result
 numbers = ''.join(filter(str.isdigit, data))
 
-# Print extracted numbers
+# Printing the  extracted numbers
 print("Extracted Numbers:", numbers)
