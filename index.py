@@ -14,8 +14,7 @@ thresh = cv2.threshold(sharpen, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
 # Perform OCR on the preprocessed image
 data = pytesseract.image_to_string(thresh, lang='eng', config='--psm 6')
 
-# cv2.imshow('sharpen', sharpen)
-# cv2.imshow('thresh', thresh)
+
 # cv2.waitKey()
 # Extract numeric characters from the OCR result
 numbers = ''.join(filter(str.isdigit, data))
